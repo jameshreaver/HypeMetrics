@@ -3,7 +3,7 @@ import "babel-polyfill"
 
 
 export default async function dispatch(data) {
-  fetch('http://hype-metrics', {
+  fetch('/hype-metrics', {
     method: 'POST',
     headers: {
       "Content-type": "application/json"
