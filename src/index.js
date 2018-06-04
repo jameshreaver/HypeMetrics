@@ -1,25 +1,40 @@
 'use strict';
 
-import EventMetric from "./metrics/EventMetric";
 import dispatch from "./dispatch";
 
 
-export function logEvent(event) {
-  return new EventMetric(event);
+export function trackClicksPerVisit(element) {
+  recordClickPerVisit(element);
 }
 
-export function recordClick(event) {
-  let eventInfo = {
+export function trackConversionRate() {
+  recordConversionRate(element);
+}
+
+export function recordClick(element) {
+  dispatch({
     type: "click",
-    elem: event.target.id,
-  }
-  dispatch(eventInfo);
+    elem: element,
+  });
 }
 
-export function recordPageView(document) {
-  let eventInfo = {
+export function recordPageView(element) {
+  dispatch({
     type: "pageview",
-    elem: document,
-  }
-  dispatch(eventInfo);
+    elem: element,
+  });
+}
+
+export function recordConversionRate(element) {
+  dispatch({
+    type: "conversion",
+    elem: element
+  });
+}
+
+export function recordClickPerVisit(element) {
+  dispatch({
+    type: "clicksvisit",
+    elem: element
+  });
 }
